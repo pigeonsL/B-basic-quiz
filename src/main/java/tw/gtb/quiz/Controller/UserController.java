@@ -1,9 +1,8 @@
 package tw.gtb.quiz.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import tw.gtb.quiz.Education;
 import tw.gtb.quiz.User;
 import tw.gtb.quiz.UserService;
@@ -22,5 +21,17 @@ public class UserController {
     public Education getUserEducation(@PathVariable("id")long id){
         Education education = userService.findUserEducation(id);
         return education;
+    }
+
+    @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registerUser(@RequestBody User user){
+        userService.addUser(user);
+    }
+
+    @PostMapping("/users/{id}/educations")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registerUserEducation(@PathVariable("id")Integer id, @RequestBody Education edu){
+        userService.addUserEducation(id, edu);
     }
 }
