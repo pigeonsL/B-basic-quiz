@@ -8,6 +8,7 @@ import tw.gtb.quiz.User;
 import tw.gtb.quiz.UserService;
 
 @RestController
+@CrossOrigin
 public class UserController {
     @Autowired
     UserService userService;
